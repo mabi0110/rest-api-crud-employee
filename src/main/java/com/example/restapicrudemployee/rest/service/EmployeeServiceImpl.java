@@ -5,6 +5,7 @@ import com.example.restapicrudemployee.rest.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -18,5 +19,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> getEmployees() {
         return employeeRepository.findAll();
+    }
+
+    @Override
+    public Optional<Employee> getEmployeeById(long id) {
+        return employeeRepository.findById(id);
     }
 }

@@ -9,4 +9,12 @@ public interface EmployeeService {
     List<Employee> getEmployees();
 
     Optional<Employee> getEmployeeById(long id);
+
+    Employee saveEmployee(Employee employee);
+
+    Optional<Employee> updateEmployee(long id, Employee employee);
+
+    void deleteEmployeeById(long id);
+
+
 }

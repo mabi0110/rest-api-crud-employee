@@ -3,10 +3,7 @@ package com.example.restapicrudemployee.rest.controller;
 import com.example.restapicrudemployee.EmployeeNotFoundException;
 import com.example.restapicrudemployee.entity.Employee;
 import com.example.restapicrudemployee.rest.service.EmployeeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,4 +29,24 @@ public class EmployeeController {
         return employeeService.getEmployeeById(id).orElseThrow(() ->
                 new EmployeeNotFoundException("Employee with ID: " + id + " not found"));
     };
+
+    @PostMapping("/employees")
+    public Employee addEmployee(@RequestBody Employee employee) {
+        return employeeService.saveEmployee(employee);
+    }
+
+    @PutMapping("/employees/{id}")
+    public Employee updateEmployee(@PathVariable long id, @RequestBody Employee employee) {
+        return employeeService.updateEmployee(id, employee).orElseThrow(() ->
+                new EmployeeNotFoundException("Employee with ID: " + id + " not found"));
+    }
+
+    @DeleteMapping("employees/{id}")
+    public void deleteEmployee(@PathVariable long id) {
+        employeeService.deleteEmployeeById(id);
+    }
+
+
+
+
 }

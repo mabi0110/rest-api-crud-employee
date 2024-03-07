@@ -24,7 +24,7 @@ public class EmployeeController {
         employees.add(new Employee("ela", "nowak", "ela@example.com"));
     }
 
-    
+
     @GetMapping("/employees")
     public List<Employee> getEmployees() {
         return employees;

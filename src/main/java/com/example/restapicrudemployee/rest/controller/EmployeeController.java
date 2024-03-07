@@ -6,6 +6,7 @@ import com.example.restapicrudemployee.rest.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -43,10 +44,11 @@ public class EmployeeController {
 
     @DeleteMapping("employees/{id}")
     public void deleteEmployee(@PathVariable long id) {
-        employeeService.deleteEmployeeById(id);
+        if( employeeService.getEmployeeById(id).isPresent()) {
+            employeeService.deleteEmployeeById(id);
+        } else {
+            throw new EmployeeNotFoundException("Employee with ID: " + id + " not found");
+        }
     }
-
-
-
 
 }
